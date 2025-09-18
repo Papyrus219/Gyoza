@@ -1,0 +1,19 @@
+10		 # size of molecules
+
+P		 # big claster
+550 370		 
+P		 
+560 370
+P
+560 380
+P
+550 380		 
+
+P		 # alone proton
+550 260		 
+
+		
+E		# electron
+550 240
+
+X		# end of setup
