@@ -1,0 +1,88 @@
+10
+
+P		#Center closter
+595 490
+P
+605 490
+P
+590 500
+P
+600 500
+P
+610 500
+P
+595 510
+P
+605 510
+
+
+
+E		#Upper left site of electrons
+660 500
+E
+650 490
+E
+640 480
+E
+630 470
+E
+620 460
+E
+610 450
+E
+600 440
+E
+590 430
+
+E		#Lower right site of electrons
+660 500
+E
+650 510
+E
+640 520
+E
+630 530
+E
+620 540
+E
+610 550
+E
+600 560
+E
+590 570
+
+E		#Upper right site of electrons
+530 500
+E
+540 490
+E
+550 480
+E
+560 470
+E
+570 460
+E
+580 450
+E
+590 440
+E
+600 430
+
+E		#Lower left site of electrons
+530 500
+E
+540 510
+E
+550 520
+E
+560 530
+E
+570 540
+E
+580 550
+E
+590 560
+E
+600 570
+
+X

@@ -1,7 +1,7 @@
 #include <cmath>
 #include "electrostatics.hpp"
 
-gyoza::Electric_molecule::Electric_molecule(Molecule_type type_, Vec2 possition_): electric_charge{Get_molecule_charge(type_)}, mass{Get_molecule_mass(type_)}, inv_mass{1/mass}, possition{possition_}
+gyoza::Electric_molecule::Electric_molecule(Molecule_type type_, Vec2 possition_): electric_charge{Get_molecule_charge(type_)}, mass{Get_molecule_mass(type_)}, inv_mass{1/mass}, size{10}, possition{possition_}
 {
     sprite.setRadius(10);
     sprite.setPosition({possition_.x,possition_.y});
@@ -20,7 +20,7 @@ gyoza::Electric_molecule::Electric_molecule(Molecule_type type_, Vec2 possition_
     }
 }
 
-gyoza::Electric_molecule::Electric_molecule(Molecule_type type_, Vec2 possition_, float size_): electric_charge{Get_molecule_charge(type_)}, mass{Get_molecule_mass(type_)}, inv_mass{1/mass}, possition{possition_}
+gyoza::Electric_molecule::Electric_molecule(Molecule_type type_, Vec2 possition_, float size_): electric_charge{Get_molecule_charge(type_)}, mass{Get_molecule_mass(type_)}, inv_mass{1/mass}, size{size_}, possition{possition_}
 {
     sprite.setRadius(size_);
     sprite.setPosition({possition_.x,possition_.y});

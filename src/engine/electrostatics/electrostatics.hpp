@@ -23,6 +23,7 @@ namespace gyoza
         const double electric_charge{};
         const double mass{};
         const double inv_mass{};
+        const float size{};
 
         Vec2 possition{};
         Vec2 velocity{};

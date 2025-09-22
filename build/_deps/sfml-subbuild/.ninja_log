@@ -1,0 +1,21 @@
+# ninja log v6
+0	11	1758227639995262465	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-mkdir	4e920e4faa019eb9
+0	11	1758227639995262465	/home/papyrus219/Dokumenty/c++/Basic-physic-engine/build/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-mkdir	4e920e4faa019eb9
+11	93110	1758227733095050491	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-download	5cbc24ae1a4a9dfd
+11	93110	1758227733095050491	/home/papyrus219/Dokumenty/c++/Basic-physic-engine/build/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-download	5cbc24ae1a4a9dfd
+93110	93119	1758227733096050489	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-update	5217c1a7b24d255e
+93110	93119	1758227733096050489	/home/papyrus219/Dokumenty/c++/Basic-physic-engine/build/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-update	5217c1a7b24d255e
+93119	93129	1758227733114050448	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-patch	acda777caf776308
+93119	93129	1758227733114050448	/home/papyrus219/Dokumenty/c++/Basic-physic-engine/build/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-patch	acda777caf776308
+93129	93139	1758227733124050425	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-configure	ed4acadbd6ad845c
+93129	93139	1758227733124050425	/home/papyrus219/Dokumenty/c++/Basic-physic-engine/build/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-configure	ed4acadbd6ad845c
+93139	93148	1758227733134050402	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-build	daefb068d9a3de7a
+93139	93148	1758227733134050402	/home/papyrus219/Dokumenty/c++/Basic-physic-engine/build/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-build	daefb068d9a3de7a
+93148	93157	1758227733143050382	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-install	ad5e9f40b09bd9ca
+93148	93157	1758227733143050382	/home/papyrus219/Dokumenty/c++/Basic-physic-engine/build/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-install	ad5e9f40b09bd9ca
+93157	93166	1758227733151050364	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-test	a4f586151d54ee36
+93157	93166	1758227733151050364	/home/papyrus219/Dokumenty/c++/Basic-physic-engine/build/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-test	a4f586151d54ee36
+93166	93179	1758227733164050334	CMakeFiles/sfml-populate-complete	1c8257559f75c4ba
+93166	93179	1758227733164050334	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-done	1c8257559f75c4ba
+93166	93179	1758227733164050334	/home/papyrus219/Dokumenty/c++/Basic-physic-engine/build/_deps/sfml-subbuild/CMakeFiles/sfml-populate-complete	1c8257559f75c4ba
+93166	93179	1758227733164050334	/home/papyrus219/Dokumenty/c++/Basic-physic-engine/build/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-done	1c8257559f75c4ba
