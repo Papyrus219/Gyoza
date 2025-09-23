@@ -30,10 +30,10 @@ Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00
 Dependency Action=Build
 EnvironmentGroup=
 Executable=file:///home/papyrus219/Dokumenty/c++/Basic-physic-engine
-External Terminal=konsole --noclose --workdir %workdir -e %exe
+External Terminal=gnome-terminal -e  %exe
 Kill Before Executing Again=4194304
 Project Target=Basic-physic-engine,Gyoza
-Use External Terminal=false
+Use External Terminal=true
 Working Directory=
 isExecutable=false
 

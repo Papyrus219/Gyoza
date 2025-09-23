@@ -67,18 +67,18 @@ void gyoza::Electric_molecule::Update(double delta_time)
     sprite.setPosition({possition.x,possition.y});
 }
 
-void gyoza::Molecules_reactions(std::vector<gyoza::Electric_molecule>& mol)
+void gyoza::Molecules_reactions(std::vector<std::unique_ptr<gyoza::Electric_molecule>>& mol)
 {
     for(int i=0;i<mol.size();i++)
     {
         for(int j=i+1;j<mol.size();j++)
         {
-            gyoza::Impact(mol[i],mol[j]);
+            gyoza::Impact(*mol[i],*mol[j]);
         }
     }
 
     for(auto &el : mol)
     {
-        el.Update(0.016666667);
+        el->Update(0.016666667);
     }
 }

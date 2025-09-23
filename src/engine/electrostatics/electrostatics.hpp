@@ -64,7 +64,7 @@ namespace gyoza
     }
 
     void Impact(Electric_molecule &a, Electric_molecule &b);
-    void Molecules_reactions(std::vector<gyoza::Electric_molecule>& mol);
+    void Molecules_reactions(std::vector<std::unique_ptr<gyoza::Electric_molecule>>& mol);
 }
 
 #endif

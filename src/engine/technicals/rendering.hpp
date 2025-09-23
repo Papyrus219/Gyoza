@@ -3,11 +3,12 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <memory>
 #include "../electrostatics/electrostatics.hpp"
 
 namespace gyoza
 {
-    void Render(std::vector<gyoza::Electric_molecule> &mol, sf::RenderWindow &window);
+    void Render(std::vector<std::unique_ptr<gyoza::Electric_molecule>> &mol, sf::RenderWindow &window);
 }
 
 #endif

@@ -5,9 +5,139 @@
 
 namespace exp1
 {
-    std::vector<gyoza::Electric_molecule> molecules{};
+    std::vector<std::unique_ptr<gyoza::Electric_molecule>> molecules{};
 
-    void Setup()
+    void Start(char mode)
+    {
+        sf::Music background{"../../audio/background.wav"};
+        background.setLooping(true);
+        background.play();
+
+        sf::RenderWindow window{};
+
+        switch(std::toupper(mode))
+        {
+            case 'T':
+                Text_setup();
+                break;
+            case 'M':
+                Mouse_setup(&window);
+                break;
+            default:
+                std::cerr << "Error! Unrecognised mode! Experiment stop!\n";
+                std::exit(1);
+                break;
+        }
+
+        if(!window.isOpen()) window.create(sf::VideoMode{{1200,1000}}, "Gyoza");
+        sf::Clock clock{};
+
+        while(window.isOpen())
+        {
+            window.clear();
+            gyoza::Render(molecules, window);
+            window.display();
+
+            if(clock.getElapsedTime() >= sf::seconds(0.016666667) )
+            {
+                gyoza::Molecules_reactions(molecules);
+
+                clock.restart();
+            }
+
+            while(std::optional<sf::Event> event = window.pollEvent())
+            {
+                if(event->is<sf::Event::Closed>())
+                {
+                    window.close();
+                }
+                if(auto key = event->getIf<sf::Event::KeyPressed>())
+                {
+                    if(key->scancode == sf::Keyboard::Scan::Escape)
+                    {
+                        window.close();
+                    }
+                    else if(key->scancode == sf::Keyboard::Scan::E && std::toupper(mode) == 'T')
+                    {
+                        Text_expansion();
+                    }
+                    else if(key->scancode == sf::Keyboard::Scan::Space && std::toupper(mode) == 'M')
+                    {
+                        clock.stop();
+                        Mouse_setup(&window);
+                        clock.start();
+                    }
+                }
+            }
+
+            if(clock.getElapsedTime() >= sf::seconds(0.016666667))
+            {
+                gyoza::Molecules_reactions(molecules);
+
+                clock.restart();
+            }
+        }
+    }
+
+    void Mouse_setup(sf::RenderWindow *window)
+    {
+        if(!window->isOpen()) window->create(sf::VideoMode{{1200,1000}}, "Gyoza");
+        gyoza::Molecule_type m_type{gyoza::Molecule_type::proton};
+
+        while(window->isOpen())
+        {
+            sf::Vector2f mouse_pos = static_cast<sf::Vector2f>( sf::Mouse::getPosition(*window) );
+            gyoza::Electric_molecule tmp_mol{m_type, {mouse_pos.x, mouse_pos.y}};
+
+            window->clear();
+            gyoza::Render(molecules, *window);
+            window->draw(tmp_mol.sprite);
+            window->display();
+
+            while(std::optional<sf::Event> event = window->pollEvent())
+            {
+                if(event->is<sf::Event::Closed>())
+                {
+                    window->close();
+                }
+                else if(auto key = event->getIf<sf::Event::KeyPressed>())
+                {
+                    if(key->scancode == sf::Keyboard::Scan::Escape)
+                    {
+                        window->close();
+                    }
+                    else if(key->scancode == sf::Keyboard::Scan::Space)
+                    {
+                        return;
+                    }
+                }
+                else if(auto mouse_key = event->getIf<sf::Event::MouseButtonPressed>())
+                {
+                    if(mouse_key->button == sf::Mouse::Button::Left)
+                    {
+                        molecules.push_back(std::make_unique<gyoza::Electric_molecule>(std::move(tmp_mol)));
+                    }
+                    else if(mouse_key->button == sf::Mouse::Button::Right)
+                    {
+                        for(int i=0; i<molecules.size();i++)
+                        {
+                            if(molecules[i]->sprite.getGlobalBounds().contains(mouse_pos))
+                            {
+                                molecules.erase(molecules.begin() + i);
+                                break;
+                            }
+                        }
+                    }
+                    else if(mouse_key->button == sf::Mouse::Button::Middle)
+                    {
+                        m_type = (m_type == gyoza::Molecule_type::proton)? gyoza::Molecule_type::electron : gyoza::Molecule_type::proton;
+                    }
+                }
+            }
+        }
+    }
+
+    void Text_setup()
     {
         char type{};
         std::string buffor;
@@ -16,8 +146,6 @@ namespace exp1
         float x{}, y{};
         float size{};
 
-        std::cout << "#ELECTRONS AND PROTONS REACTIONS\n";
-        std::cout << "#Powered with Gyoza by: Papyrus219\n\n";
         std::cout << "#SETUP START" << std::endl;;
         std::cout << "#Enter molecule size: \n";
         std::cin >> size;   std::getline(std::cin,buffor);
@@ -51,54 +179,13 @@ namespace exp1
             std::cout << "#Enter coordinates: \n";
             std::cin >> x >> y;     std::getline(std::cin,buffor);
 
-            molecules.push_back( {mole_type,{x,y},size} );
+            molecules.push_back( std::make_unique<gyoza::Electric_molecule>(mole_type,Vec2{x,y},size) );
         }
 
         std::cout << "SETUP END" << std::endl;
     }
 
-    void Start()
-    {
-        sf::Music background{"../../audio/background.wav"};
-        background.setLooping(true);
-        background.play();
-
-        sf::RenderWindow window{sf::VideoMode{{1200,1000}}, "Gyoza"};
-
-        sf::Clock clock{};
-
-        while(window.isOpen())
-        {
-            window.clear();
-            gyoza::Render(molecules, window);
-            window.display();
-
-            if(clock.getElapsedTime() >= sf::seconds(0.016666667) )
-            {
-                gyoza::Molecules_reactions(molecules);
-
-                clock.restart();
-            }
-
-            while(std::optional<sf::Event> event = window.pollEvent())
-            {
-                if(event->is<sf::Event::Closed>())
-                {
-                    window.close();
-                }
-                if(auto key = event->getIf<sf::Event::KeyPressed>())
-                {
-                    if(key->scancode == sf::Keyboard::Scan::Escape)
-                        window.close();
-                    if(key->scancode == sf::Keyboard::Scan::E)
-                        Expansion();
-                }
-            }
-
-        }
-    }
-
-    void Expansion()
+    void Text_expansion()
     {
         char type{};
         std::string buffor;
@@ -136,7 +223,7 @@ namespace exp1
             std::cout << "#Enter coordinates: \n";
             std::cin >> x >> y;     std::getline(std::cin,buffor);
 
-            molecules.push_back( {mole_type,{x,y},molecules[ molecules.size()-1 ].size} );
+            molecules.push_back( std::make_unique<gyoza::Electric_molecule>(mole_type,Vec2{x,y},molecules[ molecules.size()-1 ]->size) );
         }
 
         std::cout << "Expansion END" << std::endl;
