@@ -20,7 +20,7 @@ gyoza::Electric_molecule::Electric_molecule(Molecule_type type_, Vec2 possition_
     }
 }
 
-gyoza::Electric_molecule::Electric_molecule(Molecule_type type_, Vec2 possition_, float size_): electric_charge{Get_molecule_charge(type_)}, mass{Get_molecule_mass(type_)}, inv_mass{1/mass}, size{size_}, possition{possition_}
+gyoza::Electric_molecule::Electric_molecule(Molecule_type type_, Vec2 possition_, float size_): electric_charge{Get_molecule_charge(type_)}, mass{Get_molecule_mass(type_)}, inv_mass{ (mass != 0)? 1/mass : 1 }, size{size_}, possition{possition_}
 {
     sprite.setRadius(size_);
     sprite.setPosition({possition_.x,possition_.y});
@@ -46,7 +46,6 @@ void gyoza::Impact(Electric_molecule& a, Electric_molecule& b)
     double softening = 5.0;
 
     double distance_squred = (dx*dx) + (dy*dy) + (softening*softening);
-    double distance =  std::sqrt(distance_squred);
 
     Vec2 direction = Normalize(b.possition - a.possition);
 
