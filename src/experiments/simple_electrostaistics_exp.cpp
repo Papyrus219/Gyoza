@@ -119,7 +119,7 @@ namespace exp1
                     }
                     else if(mouse_key->button == sf::Mouse::Button::Right)
                     {
-                        for(int i=0; i<molecules.size();i++)
+                        for(int i=molecules.size()-1; i>=0;i--)
                         {
                             if(molecules[i]->sprite.getGlobalBounds().contains(mouse_pos))
                             {
