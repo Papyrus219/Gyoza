@@ -53,7 +53,7 @@ namespace exp1
                     {
                         window.close();
                     }
-                    else if(key->scancode == sf::Keyboard::Scan::E && mode == "-T" || mode == "-t")
+                    else if(key->scancode == sf::Keyboard::Scan::E && (mode == "-T" || mode == "-t"))
                     {
                         Text_expansion();
                     }
@@ -219,7 +219,7 @@ namespace exp1
             std::cout << "#Enter coordinates: \n";
             std::cin >> x >> y;     std::getline(std::cin,buffor);
 
-            molecules.push_back( std::make_unique<gyoza::Electric_molecule>(mole_type,Vec2{x,y},molecules[ molecules.size()-1 ]->size) );
+            molecules.push_back( std::make_unique<gyoza::Electric_molecule>(mole_type,Vec2{x,y},molecules[ molecules.size()-1 ]->radius) );
         }
 
         std::cout << "Expansion END" << std::endl;

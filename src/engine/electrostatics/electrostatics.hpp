@@ -2,6 +2,7 @@
 #define GYOZA_ELECTROSTATICS_HPP
 
 #include <SFML/Graphics.hpp>
+#include "../colisions/colision.hpp"
 #include "../structures/vec2.hpp"
 
 namespace gyoza
@@ -15,18 +16,12 @@ namespace gyoza
         neutron
     };
 
-    struct Electric_molecule
+    struct Electric_molecule: public Circle
     {
         Electric_molecule(Molecule_type type_, Vec2 possition_);
-        Electric_molecule(Molecule_type type_, Vec2 possition_, float size_);
+        Electric_molecule(Molecule_type type_, Vec2 possition_, float radious_);
 
         const double electric_charge{};
-        const double mass{};
-        const double inv_mass{};
-        const float size{};
-
-        Vec2 possition{};
-        Vec2 velocity{};
 
         sf::CircleShape sprite{};
 

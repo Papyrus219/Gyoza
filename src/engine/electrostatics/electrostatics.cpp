@@ -1,7 +1,7 @@
 #include <cmath>
 #include "electrostatics.hpp"
 
-gyoza::Electric_molecule::Electric_molecule(Molecule_type type_, Vec2 possition_): electric_charge{Get_molecule_charge(type_)}, mass{Get_molecule_mass(type_)}, inv_mass{1/mass}, size{10}, possition{possition_}
+gyoza::Electric_molecule::Electric_molecule(Molecule_type type_, Vec2 possition_): Circle{Get_molecule_mass(type_), possition_, 10}, electric_charge{Get_molecule_charge(type_)}
 {
     sprite.setRadius(10);
     sprite.setPosition({possition_.x,possition_.y});
@@ -20,9 +20,9 @@ gyoza::Electric_molecule::Electric_molecule(Molecule_type type_, Vec2 possition_
     }
 }
 
-gyoza::Electric_molecule::Electric_molecule(Molecule_type type_, Vec2 possition_, float size_): electric_charge{Get_molecule_charge(type_)}, mass{Get_molecule_mass(type_)}, inv_mass{ (mass != 0)? 1/mass : 1 }, size{size_}, possition{possition_}
+gyoza::Electric_molecule::Electric_molecule(Molecule_type type_, Vec2 possition_, float radius_): Circle{Get_molecule_mass(type_), possition_, radius_}, electric_charge{Get_molecule_charge(type_)}
 {
-    sprite.setRadius(size_);
+    sprite.setRadius(radius_);
     sprite.setPosition({possition_.x,possition_.y});
 
     switch(type_)
@@ -68,11 +68,18 @@ void gyoza::Electric_molecule::Update(double delta_time)
 
 void gyoza::Molecules_reactions(std::vector<std::unique_ptr<gyoza::Electric_molecule>>& mol)
 {
-    for(int i=0;i<mol.size();i++)
+    for(int i=0;i<mol.size()-1;i++)
     {
         for(int j=i+1;j<mol.size();j++)
         {
+            Manifold m{};
+
             gyoza::Impact(*mol[i],*mol[j]);
+            if(Circle_circle_colision(*mol[i],*mol[j],&m))
+            {
+                Resolve_colision(*mol[i],*mol[j],&m);
+                Penetration_corection(*mol[i],*mol[j],&m);
+            }
         }
     }
 
