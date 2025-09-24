@@ -9,7 +9,7 @@ namespace exp1
 {
     extern std::vector< std::unique_ptr<gyoza::Electric_molecule>> molecules;
 
-    void Start(char mode);
+    void Start(std::string &mode);
 
     void Text_setup();
     void Mouse_setup(sf::RenderWindow *window);

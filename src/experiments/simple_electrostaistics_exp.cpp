@@ -7,7 +7,7 @@ namespace exp1
 {
     std::vector<std::unique_ptr<gyoza::Electric_molecule>> molecules{};
 
-    void Start(char mode)
+    void Start(std::string &mode)
     {
         sf::Music background{"../../audio/background.wav"};
         background.setLooping(true);
@@ -15,19 +15,15 @@ namespace exp1
 
         sf::RenderWindow window{};
 
-        switch(std::toupper(mode))
-        {
-            case 'T':
+       
+            if(mode == "-T" || mode == "-t")
+            {
                 Text_setup();
-                break;
-            case 'M':
+            }
+            else
+            {
                 Mouse_setup(&window);
-                break;
-            default:
-                std::cerr << "Error! Unrecognised mode! Experiment stop!\n";
-                std::exit(1);
-                break;
-        }
+            }
 
         if(!window.isOpen()) window.create(sf::VideoMode{{1200,1000}}, "Gyoza");
         sf::Clock clock{};
@@ -57,11 +53,11 @@ namespace exp1
                     {
                         window.close();
                     }
-                    else if(key->scancode == sf::Keyboard::Scan::E && std::toupper(mode) == 'T')
+                    else if(key->scancode == sf::Keyboard::Scan::E && mode == "-T" || mode == "-t")
                     {
                         Text_expansion();
                     }
-                    else if(key->scancode == sf::Keyboard::Scan::Space && std::toupper(mode) == 'M')
+                    else if(key->scancode == sf::Keyboard::Scan::Space)
                     {
                         clock.stop();
                         Mouse_setup(&window);

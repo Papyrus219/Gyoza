@@ -41,5 +41,6 @@
 *.dwo
 
 build/
+.vscode/
 *.kdev4
 kdev4/
